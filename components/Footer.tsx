@@ -50,8 +50,8 @@ export default function Footer() {
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
                     <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)' }}><PrivacyPolicyModal /></li>
                     <li style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)' }}><LegalNoticeModal /></li>
-                    <li><Link href="/privacy-policy" style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>개인정보 처리방침</Link></li>
                     <li><Link href="/terms-of-service" style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>이용약관</Link></li>
+                    <li><Link href="/cookie-policy" style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', textDecoration: 'none' }}>쿠키 정책</Link></li>
                   </ul>
                 </div>
               </div>

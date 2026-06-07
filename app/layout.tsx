@@ -165,6 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="NaverBot" content="all" />
         <meta name="Yeti" content="all" />
+        <meta name="naver-site-verification" content="7c0f8bb26c4aac52c9ebb6a8bef51d549991d851" />
 
         <meta httpEquiv="content-language" content="ko-KR" />
         <meta name="geo.region" content="KR" />

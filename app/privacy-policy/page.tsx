@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
 
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>4. 개인정보의 제3자 제공</h2>
-          <p>회사는 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 단, 이용자가 사전에 동의한 이용사학원 상담 연결 서비스의 경우, 해당 학원에 상담 목적으로 최소한의 정보를 제공할 수 있습니다.</p>
+          <p>회사는 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다. 단, 이용자가 사전에 동의한 이용사학원 상담 연결 서비스의 경우, 올댓뷰티 상담사에게 상담 목적으로 최소한의 정보를 제공할 수 있습니다.</p>
         </section>
 
         <section>

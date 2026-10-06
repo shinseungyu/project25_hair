@@ -238,7 +238,10 @@ export default function BottomForm() {
 
           {/* 자격증 보유 여부 */}
           <div className="bf-group bf-g-license">
-            <span className="bf-label" id="bf-license-label">이용사 국가자격증</span>
+            <span className="bf-label" id="bf-license-label">
+              <span className="bf-l-long">이용사 국가자격증</span>
+              <span className="bf-l-short">자격증</span>
+            </span>
             <div className="bf-seg" role="group" aria-labelledby="bf-license-label">
               {LICENSE_OPTIONS.map(({ label, value }) => (
                 <button
@@ -254,13 +257,13 @@ export default function BottomForm() {
             </div>
           </div>
 
-          <div className="bf-actions bf-span2">
+          <div className="bf-actions">
             <button type="button" className="bf-submit" onClick={handleSubmitClick} disabled={sending}>
               {sending ? '전송 중...' : '상담 신청'}
             </button>
           </div>
 
-          <p className="bf-status bf-span2" aria-live="polite" style={{ color: statusColor }}>
+          <p className="bf-status" aria-live="polite" style={{ color: statusColor }}>
             {status.message}
           </p>
         </div>

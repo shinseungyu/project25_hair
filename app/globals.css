@@ -101,7 +101,7 @@ a { color: inherit; text-decoration: none; transition: all 0.2s ease; }
 /* ── 화면 하단 고정 상담 바 (components/BottomForm.tsx) ── */
 /* 실제 여백은 BottomForm 이 실측 높이로 다시 설정한다. 아래 값은 하이드레이션 전 기본값. */
 body {
-  padding-bottom: 400px;
+  padding-bottom: 240px;
 }
 
 .bf-bar {
@@ -113,21 +113,22 @@ body {
   background: var(--accent);
   border-top: 1px solid rgba(184, 144, 91, 0.35);
   box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
-  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  padding: 8px 14px calc(8px + env(safe-area-inset-bottom));
 }
 
-/* 모바일: 2열 격자 (모든 입력칸이 처음부터 전부 보인다) */
+/* 모바일: flex-wrap 으로 알약형 필드를 나열해 자연스럽게 다음 줄로 넘긴다(모든 입력칸이 처음부터 전부 보인다) */
 .bf-inner {
   max-width: 1220px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: end;
-  gap: 8px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 6px 8px;
 }
 
+/* 항상 한 줄 전체를 차지해야 하는 요소(동의/버튼/상태 메시지) */
 .bf-span2 {
-  grid-column: 1 / -1;
+  flex: 1 1 100%;
 }
 
 .bf-head {
@@ -156,6 +157,13 @@ body {
   min-width: 0;
 }
 
+.bf-g-name { flex: 1 1 108px; }
+.bf-g-birth { flex: 1 1 108px; }
+.bf-g-region { flex: 1 1 108px; }
+.bf-g-sex { flex: 0 0 104px; }
+.bf-g-phone { flex: 1 1 220px; }
+.bf-g-license { flex: 1 1 150px; }
+
 .bf-label {
   font-size: 11px;
   font-weight: 800;
@@ -168,6 +176,22 @@ body {
   text-overflow: ellipsis;
 }
 
+/* 모바일: placeholder 로 의미가 분명한 필드는 라벨을 시각적으로만 숨겨 키를 낮춘다(접근성용 label 연결은 유지) */
+.bf-g-name > .bf-label,
+.bf-g-birth > .bf-label,
+.bf-g-region > .bf-label,
+.bf-g-phone > .bf-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .bf-row {
   display: flex;
   align-items: center;
@@ -175,14 +199,15 @@ body {
   min-width: 0;
 }
 
+/* 입력칸·셀렉트: 흰 배경 + 옅은 회색 테두리 + 완전한 pill 라운드 */
 .bf-input,
 .bf-select {
   width: 100%;
   min-width: 0;
   height: 40px;
-  padding: 0 10px;
-  border: 1px solid transparent;
-  border-radius: 12px;
+  padding: 0 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
   background: var(--bg-card);
   color: var(--text-primary);
   font-family: inherit;
@@ -195,6 +220,10 @@ body {
   cursor: pointer;
 }
 
+.bf-input::placeholder {
+  color: var(--text-muted);
+}
+
 .bf-input:focus,
 .bf-select:focus {
   border-color: var(--primary);
@@ -203,7 +232,7 @@ body {
 .bf-prefix {
   width: 84px;
   flex: 0 0 84px;
-  padding-right: 4px;
+  padding: 0 6px 0 14px;
 }
 
 .bf-seg {
@@ -212,15 +241,16 @@ body {
   min-width: 0;
 }
 
+/* 성별/자격증 토글: 선택됨 = 브랜드 색 꽉 채움 + 흰 글씨, 선택 안 됨 = 흰 배경 + 회색 테두리 + 회색 글씨 */
 .bf-seg-btn {
   flex: 1 1 0;
   min-width: 0;
   height: 40px;
   padding: 0 6px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 12px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
   font-family: inherit;
   font-size: 14px;
   font-weight: 800;
@@ -234,7 +264,7 @@ body {
   color: #fff;
 }
 
-/* 자격증: 모바일에서는 라벨과 선택을 한 줄로 두어 높이를 줄인다 */
+/* 자격증: 라벨과 토글을 한 줄로 두어 높이를 줄인다 */
 .bf-g-license {
   flex-direction: row;
   align-items: center;
@@ -249,6 +279,7 @@ body {
   flex: 0 0 150px;
 }
 
+/* 동의: 체크박스 + 짧은 라벨만 노출. 상세 문구는 전부 PrivacyModal 안에 있다 */
 .bf-consent {
   display: flex;
   align-items: center;
@@ -277,22 +308,16 @@ body {
   cursor: pointer;
 }
 
+.bf-check-text {
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+  text-underline-offset: 2px;
+}
+
 .bf-req {
   color: var(--primary);
   font-weight: 800;
-}
-
-.bf-detail {
-  flex: 0 0 auto;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--primary);
-  text-decoration: underline;
-  white-space: nowrap;
 }
 
 .bf-actions {
@@ -300,12 +325,13 @@ body {
   min-width: 0;
 }
 
+/* CTA: 기존 브랜드 색을 그대로 꽉 채운 pill 버튼, 문구는 그대로 */
 .bf-submit {
   flex: 1 1 auto;
   height: 46px;
   padding: 0 20px;
   border: none;
-  border-radius: 12px;
+  border-radius: 999px;
   background: var(--primary);
   color: #fff;
   font-family: inherit;
@@ -333,16 +359,15 @@ body {
   min-width: 0;
 }
 
+/* 메시지가 없을 때(평상시)는 빈 줄 높이를 차지하지 않는다 */
+.bf-status:empty {
+  display: none;
+}
+
 /* PC: 한 줄로 넓게 배치해 높이를 줄인다 */
 @media (min-width: 900px) {
   body {
     padding-bottom: 150px;
-  }
-  .bf-inner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    gap: 8px 10px;
   }
   .bf-head {
     display: block;
@@ -396,5 +421,19 @@ body {
   .bf-status {
     order: 10;
     flex: 1 1 100%;
+  }
+  /* 데스크톱은 가로 폭이 넉넉하므로 라벨을 다시 보여준다 */
+  .bf-g-name > .bf-label,
+  .bf-g-birth > .bf-label,
+  .bf-g-region > .bf-label,
+  .bf-g-phone > .bf-label {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding-left: 2px;
+    overflow: visible;
+    clip: auto;
+    white-space: nowrap;
   }
 }

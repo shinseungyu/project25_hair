@@ -210,7 +210,7 @@ export default function BottomForm() {
           </div>
 
           {/* 연락처 */}
-          <div className="bf-group bf-g-phone bf-span2">
+          <div className="bf-group bf-g-phone">
             <label className="bf-label" htmlFor="bf-mobile2">연락처</label>
             <div className="bf-row">
               <select
@@ -237,7 +237,7 @@ export default function BottomForm() {
           </div>
 
           {/* 자격증 보유 여부 */}
-          <div className="bf-group bf-g-license bf-span2">
+          <div className="bf-group bf-g-license">
             <span className="bf-label" id="bf-license-label">이용사 국가자격증</span>
             <div className="bf-seg" role="group" aria-labelledby="bf-license-label">
               {LICENSE_OPTIONS.map(({ label, value }) => (
@@ -254,7 +254,8 @@ export default function BottomForm() {
             </div>
           </div>
 
-          {/* 동의(기존 문구·모달 유지) */}
+          {/* 동의: 바에는 짧은 라벨만 노출하고, 체크박스나 라벨을 누르면 기존 PrivacyModal 로 상세 내용을 보여준다.
+              (동의 문구·동의를 받는 로직은 그대로 유지 — 체크박스 직접 토글도 계속 가능) */}
           <div className="bf-consent bf-span2">
             <label className="bf-check">
               <input
@@ -263,13 +264,16 @@ export default function BottomForm() {
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
               />
-              <span>
-                <b className="bf-req">[필수]</b> 개인정보 수집·이용 및 제3자 제공 동의
+              <span
+                className="bf-check-text"
+                onClick={(e) => {
+                  e.preventDefault()
+                  setShowModal(true)
+                }}
+              >
+                <b className="bf-req">[필수]</b> 개인정보 동의
               </span>
             </label>
-            <button type="button" className="bf-detail" onClick={() => setShowModal(true)}>
-              상세보기
-            </button>
           </div>
 
           <div className="bf-actions bf-span2">

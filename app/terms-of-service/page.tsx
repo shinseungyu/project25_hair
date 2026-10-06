@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import { COMPANY_NAME } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: '이용약관 | 헤어이용사학원수강료비교',
@@ -21,7 +22,7 @@ export default function TermsOfServicePage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 40, fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.8 }}>
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>제1조 (목적)</h2>
-          <p>이 약관은 주식회사 와야미디어(이하 "회사")가 운영하는 헤어이용사학원수강료비교사이트(이하 "서비스")의 이용 조건 및 절차, 회사와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
+          <p>이 약관은 {COMPANY_NAME}(이하 "회사")가 운영하는 헤어이용사학원수강료비교사이트(이하 "서비스")의 이용 조건 및 절차, 회사와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.</p>
         </section>
 
         <section>
@@ -58,7 +59,7 @@ export default function TermsOfServicePage() {
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>제7조 (문의)</h2>
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 16, padding: '20px 24px' }}>
-            <p><strong>회사명:</strong> 주식회사 와야미디어</p>
+            <p><strong>회사명:</strong> {COMPANY_NAME}</p>
             <p><strong>이메일:</strong> skfmtlf21133@gmail.com</p>
           </div>
         </section>

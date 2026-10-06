@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import { COMPANY_NAME, PRIVACY_COLLECTOR } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: '개인정보 처리방침 | 헤어이용사학원수강료비교',
@@ -21,7 +22,7 @@ export default function PrivacyPolicyPage() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 40, fontSize: 15, color: 'var(--text-secondary)', lineHeight: 1.8 }}>
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>1. 개인정보의 처리 목적</h2>
-          <p>주식회사 와야미디어(이하 "회사")는 이용사 헤어학원 상담 안내 서비스 제공을 위해 최소한의 개인정보를 수집합니다.</p>
+          <p>{PRIVACY_COLLECTOR}(이하 "회사")는 이용사 헤어학원 상담 안내 서비스 제공을 위해 최소한의 개인정보를 수집합니다.</p>
           <ul style={{ paddingLeft: 20, marginTop: 12 }}>
             <li>이용사학원 수강료 상담 및 학원 연결 서비스 제공</li>
             <li>상담 신청자 식별 및 연락</li>
@@ -62,7 +63,7 @@ export default function PrivacyPolicyPage() {
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>7. 개인정보 보호책임자</h2>
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 16, padding: '20px 24px' }}>
-            <p><strong>회사명:</strong> 주식회사 와야미디어</p>
+            <p><strong>회사명:</strong> {COMPANY_NAME}</p>
             <p><strong>이메일:</strong> skfmtlf21133@gmail.com</p>
           </div>
         </section>

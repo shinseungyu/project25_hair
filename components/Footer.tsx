@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import PrivacyPolicyModal from './PrivacyPolicyModal';
 import LegalNoticeModal from './LegalNoticeModal';
+import { COMPANY_NAME } from '@/lib/company';
 
 export default function Footer() {
   return (
@@ -20,7 +21,7 @@ export default function Footer() {
                 이용사학원 수강료 · 국비지원 · 자격증 · 취업 · 창업 정보 전문
               </p>
               <address style={{ fontStyle: 'normal', fontSize: 12, color: 'rgba(255,255,255,0.3)', lineHeight: 1.9 }}>
-                <span style={{ display: 'block' }}>상호: 주식회사 와야미디어</span>
+                <span style={{ display: 'block' }}>상호: {COMPANY_NAME}</span>
                 <span style={{ display: 'block' }}>사업자등록번호: 105-87-55780</span>
                 <span style={{ display: 'block' }}>업종: 광고대행, 광고물작성, 기타광고</span>
                 <span style={{ display: 'block' }}>주소: 서울특별시 마포구 구룡길 19, A429호</span>

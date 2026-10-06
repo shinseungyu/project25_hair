@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import { COMPANY_NAME } from '@/lib/company';
 
 export const metadata: Metadata = {
   title: '쿠키 정책 | 헤어이용사학원수강료비교',
@@ -53,7 +54,7 @@ export default function CookiePolicyPage() {
         <section>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 16 }}>문의</h2>
           <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: 16, padding: '20px 24px' }}>
-            <p><strong>회사명:</strong> 주식회사 와야미디어</p>
+            <p><strong>회사명:</strong> {COMPANY_NAME}</p>
             <p><strong>이메일:</strong> skfmtlf21133@gmail.com</p>
           </div>
         </section>

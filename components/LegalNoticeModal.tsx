@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { COMPANY_NAME } from "@/lib/company"
 
 export default function LegalNoticeModal() {
   const [open, setOpen] = useState(false)
@@ -27,7 +28,7 @@ export default function LegalNoticeModal() {
               <p>※ 본 서비스는 헤어(이용사)학원 관련 정보 안내 및 전문 상담사 연결을 대행하는 서비스입니다. 상담 신청 시 입력하신 개인정보는 상담 목적으로만 활용됩니다.</p><br />
               <p>※ 이용자는 개인정보 제공에 대한 동의를 거부할 권리가 있으며, 거부 시 상담 서비스 이용이 제한될 수 있습니다.</p><br />
               <p>※ 본 사이트를 통한 학원 상담은 특정 결과를 보장하지 않으며, 최종 수강 결정은 이용자 본인의 판단에 따릅니다.</p><br />
-              <p>※ 주식회사 와야미디어는 이용사 헤어학원 정보 제공 및 상담 연결 서비스를 운영하는 업체입니다.</p>
+              <p>※ {COMPANY_NAME}는 이용사 헤어학원 정보 제공 및 상담 연결 서비스를 운영하는 업체입니다.</p>
             </div>
 
             <div style={{ padding: "1rem 1.5rem", borderTop: "1px solid #e5e7eb" }}>

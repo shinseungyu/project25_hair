@@ -2,18 +2,11 @@
 
 import { useState } from "react"
 import PrivacyModal from "./PrivacyModal"
-import { validateForm, parsePhone } from "@/lib/validate"
+import { validateForm, parsePhone, SPECIAL_CHAR_REG } from "@/lib/validate"
+import { CATEGORY, FORM_DEFAULTS, MOBILE_PREFIXES, REGIONS, SEX_OPTIONS } from "@/lib/formOptions"
 
 export default function FormSection() {
-  const [form, setForm] = useState({
-    customer_name: "",
-    customer_birth: "",
-    mobile1: "010",
-    mobile2: "",
-    customer_sex: "1",
-    region: "",
-    has_license: "N",
-  })
+  const [form, setForm] = useState({ ...FORM_DEFAULTS })
   const [showModal, setShowModal] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [focusedField, setFocusedField] = useState<string | null>(null)
@@ -21,7 +14,6 @@ export default function FormSection() {
   const set = (key: string, value: string) =>
     setForm((p) => ({ ...p, [key]: value }))
 
-  const SPECIAL_CHAR_REG = /[ \{\}\[\]\/.,;:|\)*~`^\-_+┼<>\%\'\"\\\(\=]/i
   const handleNameChange = (value: string) => {
     if (SPECIAL_CHAR_REG.test(value)) {
       alert("특수문자는 입력하실수 없습니다.")
@@ -50,7 +42,7 @@ export default function FormSection() {
       customer_sex: form.customer_sex,
       region: form.region,
       has_license: form.has_license,
-      category: "hair",
+      category: CATEGORY,
     }
 
     setSubmitted(true)
@@ -69,7 +61,7 @@ export default function FormSection() {
         return
       }
       alert("상담 신청이 완료되었습니다. 담당자가 곧 연락드리겠습니다.")
-      setForm({ customer_name: "", customer_birth: "", mobile1: "010", mobile2: "", customer_sex: "1", region: "", has_license: "N" })
+      setForm({ ...FORM_DEFAULTS })
     } catch {
       alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.")
     }
@@ -146,7 +138,7 @@ export default function FormSection() {
                   style={inputStyle}
                 />
                 <div style={{ display: 'flex', gap: '4px', marginLeft: '12px', paddingLeft: '12px', borderLeft: '1px solid var(--border-color)', flexShrink: 0 }}>
-                  {[{ label: '남', val: '1' }, { label: '여', val: '2' }].map(({ label, val }) => (
+                  {SEX_OPTIONS.map(({ label, value: val }) => (
                     <button
                       key={val}
                       type="button"
@@ -195,7 +187,7 @@ export default function FormSection() {
                     onBlur={() => setFocusedField(null)}
                     style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
                   >
-                    {["010","011","016","017","019"].map((v) => <option key={v} value={v}>{v}</option>)}
+                    {MOBILE_PREFIXES.map((v) => <option key={v} value={v}>{v}</option>)}
                   </select>
                   <span style={{ position: 'absolute', right: '12px', pointerEvents: 'none', color: 'var(--text-muted)', fontSize: '10px' }}>▼</span>
                 </div>
@@ -225,7 +217,7 @@ export default function FormSection() {
                   style={{ ...inputStyle, appearance: 'none', cursor: 'pointer', color: form.region ? 'var(--text-primary)' : 'var(--text-muted)' }}
                 >
                   <option value="" disabled hidden>지역 선택</option>
-                  {["서울","부산","대구","인천","광주","대전","울산","세종","경기","강원","충북","충남","전북","전남","경북","경남","제주"].map((r) => (
+                  {REGIONS.map((r) => (
                     <option key={r} value={r}>{r}</option>
                   ))}
                 </select>
